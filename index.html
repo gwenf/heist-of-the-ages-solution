@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <title>Code Submission</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,6 +41,16 @@
         button:hover {
             background-color: #0056b3;
         }
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #success {
+            color: green;
+        }
+        #error {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -51,16 +61,21 @@
             <br>
             <button type="submit">Submit</button>
         </form>
-        <p id="message" style="color: green; font-weight: bold; display: none;">Code submitted successfully!</p>
+        <p id="message"></p>
     </div>
     <script>
         function handleSubmit(event) {
             event.preventDefault();
-            const code = document.getElementById('code').value;
-            if (code) {
-                document.getElementById('message').style.display = 'block';
-                document.getElementById('code').value = ''; // Clear input field
+            const code = document.getElementById('code').value.trim();
+            const message = document.getElementById('message');
+            if (code === "VAULT7") {
+                message.textContent = "The location is Korea.";
+                message.id = "success";
+            } else {
+                message.textContent = "Incorrect code. Please try again.";
+                message.id = "error";
             }
+            document.getElementById('code').value = ''; // Clear input field
         }
     </script>
 </body>
