@@ -62,18 +62,27 @@
             <button type="submit">Submit</button>
         </form>
         <p id="message"></p>
+        <div id="location" style="display: none; margin-top: 20px; text-align: center;">
+            <h2>Coordinates:</h2>
+            <p><strong>37.5665° N, 126.9780° E</strong></p>
+            <p>The scroll is in Seoul, South Korea!</p>
+        </div>
     </div>
     <script>
         function handleSubmit(event) {
             event.preventDefault();
             const code = document.getElementById('code').value.trim();
             const message = document.getElementById('message');
+            const locationDiv = document.getElementById('location');
+
             if (code === "VAULT7") {
-                message.textContent = "The location is Korea.";
-                message.id = "success";
+                message.textContent = "Correct code! The scroll's location is revealed.";
+                message.className = "success";
+                locationDiv.style.display = "block";
             } else {
                 message.textContent = "Incorrect code. Please try again.";
-                message.id = "error";
+                message.className = "error";
+                locationDiv.style.display = "none";
             }
             document.getElementById('code').value = ''; // Clear input field
         }
